@@ -25,7 +25,7 @@ namespace WebAppCoreMVC.Controllers
 
         public IActionResult IndexFront()
         {
-            return View("index_front");
+            return View("index_");
         }
 
         public IActionResult Privacy()
