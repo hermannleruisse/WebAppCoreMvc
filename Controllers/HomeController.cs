@@ -23,6 +23,11 @@ namespace WebAppCoreMVC.Controllers
             return View();
         }
 
+        public IActionResult IndexFront()
+        {
+            return View("index_");
+        }
+
         public IActionResult Privacy()
         {
             return View();
