@@ -1,0 +1,6 @@
+services:
+  webappcoremvc:
+    image: ${DOCKER_REGISTRY-}webappcoremvc
+    build:
+      context: WebAppKondi
+      dockerfile: Dockerfile

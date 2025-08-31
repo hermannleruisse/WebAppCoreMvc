@@ -1,0 +1,36 @@
+﻿@model WebAppCoreMVC.Models.AuthenticateRequest
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-lg-4 center-block">
+    <h2>CONNEXION</h2>
+    @using (Html.BeginForm("Connexion", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @*@Html.ValidationSummary()*@
+
+        if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info">
+                <strong>@ViewBag.Message !</strong>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Username, new { @class = "control-label col-lg-2" })
+            @Html.TextBoxFor(x => x.Username, new { @class = "form-control col-lg-2" })
+            @Html.ValidationMessageFor(x => x.Username)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Password, new { @class = "control-label col-lg-2" })
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control col-lg-2" })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        <button type="submit" class="btn btn-default">Se connecter</button>
+    }
+</div>
+
+
+
