@@ -9,7 +9,7 @@ RUN dotnet build "WebAppCoreMVC.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "WebAppCoreMVC.csproj" -c Release -o /app/publish
 # Create the final image for running the app
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "WebAppCoreMVC.dll"]
