@@ -8,8 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Role.cs" />
+    <Compile Remove="Models\User.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\ADMIN\Data\" />
     <Folder Include="Areas\ADMIN\Models\" />
+    <Folder Include="Areas\PUBLIC\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
 

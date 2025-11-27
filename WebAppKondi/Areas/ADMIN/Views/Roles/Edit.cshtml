@@ -1,0 +1,52 @@
+﻿@model WebAppCoreMVC.Models.EditRoleViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Modifier le role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Modifier le role</h1>
+
+<h4>Role</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label">Nom du rôle</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Permissions</label>
+                <div class="border p-3" style="max-height: 300px; overflow-y: auto;">
+                    @foreach (var permission in Model.AvailablePermissions)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   name="SelectedPermissionIds"
+                                   value="@permission.Id"
+                                   @(permission.IsSelected ? "checked" : "") />
+
+                            <label class="form-check-label">@permission.Name</label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <input type="submit" value="Enregistrer" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

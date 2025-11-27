@@ -26,7 +26,7 @@ namespace WebAppCoreMVC.Controllers
             if (ModelState.IsValid)
             {
                 string pass = BCryptNet.HashPassword(auth.Password);
-                var us = _userService.ObtenirElement(auth.Username);
+                var us = _userService.ObtenirElement(auth.Username).Result;
                 if (us != null && BCryptNet.Verify(auth.Password, us.Password))
                 {
                     //Session["UserId"] = us.Id;

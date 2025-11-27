@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebAppCoreMVC.Entities.Role>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Liste des rôles</h1>
+
+<p>
+    <a asp-action="Create">Créer un rôle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom du rôle</th>
+            <th>
+                Permissions
+                @* @Html.DisplayNameFor(model => model.Name) *@
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var role in Model) {
+        <tr>
+            <td>
+                @role.Name
+                @* @Html.DisplayFor(modelItem => item.Name) *@
+            </td>
+            <td>
+                @if(role.RolePermissions?.Any() == true)
+                {
+                    foreach(var perm in role.RolePermissions.Select(rp => rp.Permission.Name))
+                    {
+                        <span class="badge bg-success">@perm</span>
+                    }
+                }
+                else
+                {
+                    <span class="text-muted">Aucune permission</span>
+                }
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@role.Id">Editer</a> |
+                <a asp-action="Details" asp-route-id="@role.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@role.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

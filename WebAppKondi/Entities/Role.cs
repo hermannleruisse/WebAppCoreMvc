@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 
 namespace WebAppCoreMVC.Entities
 {
-    public enum Role
+    public class Role
     {
-        Admin,
-        User
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        // Navigation
+        public ICollection<User> Users { get; set; } = new List<User>();
+        public ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
     }
 }
